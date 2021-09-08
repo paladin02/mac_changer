@@ -2,12 +2,11 @@ from tkinter import ttk, messagebox
 import tkinter as tk
 import subprocess
 import os
-class Demo2():
+class Demo2(tk.Tk):
     def __init__(self):
-        root = tk.Tk()
-        root.geometry("300x100")
-        self.entry1 = tk.Entry(root)
-        self.b2 = tk.Button(root, text="MAC Değiştir", bg='black', fg='#469A00',command=lambda:self.mac_changer(str(self.entry1.get())))
+        super().__init__()
+        self.entry1 = tk.Entry(self)
+        self.b2 = tk.Button(self, text="MAC Değiştir", bg='black', fg='#469A00',command=lambda:self.mac_changer(str(self.entry1.get())))
         self.entry1.grid(row=0, column=1)
         self.b2.grid(row=0, column=5)
         self.b2.place(x=80, y=50)
@@ -17,9 +16,8 @@ class Demo2():
             self.command = ("macchanger -r %s" % (mac))
             os.popen(self.command)
         except:
-            print("Çatlakk")
+            print("NO")
 
-root = tk.Tk()
-root.geometry("290x100")
 app = Demo2()
-root.mainloop()
+app.geometry("300x100")
+app.mainloop()
